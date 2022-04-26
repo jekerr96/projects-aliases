@@ -2,24 +2,25 @@
 
 namespace App\Services;
 
+use App\Models\Jwt;
+use Illuminate\Support\Facades\Cookie;
+
 class JwtService
 {
-    protected string $token;
+    protected ?\stdClass $tokenData = null;
 
-    public function setToken(string $token)
+    public function __construct()
     {
-        $this->token = $token;
+        if (Cookie::get('JWT')) {
+            $this->parse(Cookie::get('JWT'));
+        }
     }
 
-    protected function parse(): ?\stdClass {
-        if (!isset($this->token)) {
-            return null;
-        }
-
-        return json_decode(base64_decode(str_replace('_', '/', str_replace('-','+',explode('.', $this->token)[1]))));
+    protected function parse(string $token): ?\stdClass {
+        $this->tokenData = (new Jwt())->setToken($token)->getTokenData();
     }
 
     public function getLogin(): ?string {
-        return $this->parse()?->login;
+        return $this->tokenData?->login;
     }
 }

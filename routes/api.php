@@ -13,9 +13,9 @@ use App\Http\Controllers;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::get('/projects', [Controllers\Api\ProjectsController::class, 'list']);
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::prefix('/projects')
+    ->controller(Controllers\Api\ProjectsController::class)
+    ->group(function () {
+        Route::get('/', 'list');
+        Route::post('/pick', 'pick');
+    });

@@ -10,6 +10,11 @@ class Project
     {
     }
 
+    public function getName(): string
+    {
+        return $this->directory;
+    }
+
     public function getUrl(): string
     {
         return str_replace("#NAME#", $this->directory, $this->getLinkTemplate());

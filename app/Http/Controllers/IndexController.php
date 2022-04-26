@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ProjectsListService;
-use Illuminate\Http\Request;
-
 class IndexController extends Controller
 {
-    public function index(ProjectsListService $service)
+    public function index()
     {
-        dd($service->getProjects());
+        return view('index');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Project;
+use Illuminate\Support\Collection;
 
 class ProjectsListService
 {
@@ -69,19 +70,21 @@ class ProjectsListService
     }
 
     /**
-     * @return Project[]
+     * @return Collection|Project[]
      */
-    public function getProjects(): array
+    public function getProjects(): Collection
     {
-        return array_map(function (string $directory) {
-            $icon = $this->getIconByDir($directory);
-            $project = new Project($directory);
+        return collect(
+            array_map(function (string $directory) {
+                $icon = $this->getIconByDir($directory);
+                $project = new Project($directory);
 
-            if ($icon) {
-                $project->setIcon($icon);
-            }
+                if ($icon) {
+                    $project->setIcon($icon);
+                }
 
-            return $project;
-        }, $this->getDirectories());
+                return $project;
+            }, $this->getDirectories())
+        )->values();
     }
 }

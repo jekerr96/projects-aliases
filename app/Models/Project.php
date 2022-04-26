@@ -17,6 +17,11 @@ class Project
         return Str::ucfirst($this->directory);
     }
 
+    public function getOriginalName(): string
+    {
+        return $this->directory;
+    }
+
     public function getUrl(): string
     {
         return str_replace("#NAME#", $this->directory, $this->getLinkTemplate());

@@ -3,8 +3,9 @@
         <div class="project-card__icon" v-html="project.icon" />
 
         <span class="project-card__bottom">
-             <span class="project-card__name">{{ project.name }}</span>
-            <span class="project-card__link">{{ project.url }}</span>
+            <span class="project-card__name">{{ project.name }}</span>
+            <span class="project-card__info project-card__link">{{ project.url }}</span>
+            <span class="project-card__info project-card__commits">Количество коммитов: {{ commitsCount }}</span>
         </span>
     </a>
 </template>
@@ -21,6 +22,11 @@ export default {
                 project: this.project.name,
             }));
         },
+    },
+    computed: {
+        commitsCount: function () {
+            return this.project.commitsCount ? this.project.commitsCount : 0;
+        }
     }
 }
 </script>

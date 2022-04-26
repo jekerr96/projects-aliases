@@ -8,7 +8,6 @@ use App\Models\Bots\TelegramBot;
 use App\Services\JwtService;
 use App\Services\ProjectsListService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
 
 class ProjectsController extends Controller
 {
@@ -34,7 +33,6 @@ class ProjectsController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $request->all(),
         ]);
     }
 }

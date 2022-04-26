@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
+
 class Project
 {
     protected string $icon = '/slon-256.png';
@@ -12,7 +14,7 @@ class Project
 
     public function getName(): string
     {
-        return $this->directory;
+        return Str::ucfirst($this->directory);
     }
 
     public function getUrl(): string

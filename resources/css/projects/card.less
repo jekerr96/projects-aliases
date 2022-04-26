@@ -1,18 +1,90 @@
 @import "../_var";
 
 .project-card {
-    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
     color: var(--primary-text-color);
+    font: bold 10px/30px sans-serif;
+    text-decoration: none;
+    overflow: hidden;
 
     &__icon {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 60px;
+        flex-shrink: 0;
+        height: 200px;
+        padding: 20px;
+        background-color: var(--background-light-color);
+        box-sizing: border-box;
+        transition: .2s ease-in-out filter;
 
         img,
         svg {
+            min-width: 100px;
+            min-height: 100px;
+            max-height: 100%;
             max-width: 100%;
+        }
+    }
+
+    &__bottom {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        background: var(--background-color);
+        height: 100%;
+        color: var(--light-text-color);
+        box-sizing: border-box;
+        transition: .2s ease-in-out all;
+    }
+
+    &__name {
+        font-size: 24px;
+        color: var(--primary-text-color);
+        transition: .2s ease-in-out color;
+    }
+
+    &:hover {
+        .project-card {
+            &__icon {
+                filter: invert(1);
+            }
+
+            &__bottom {
+                background-color: var(--contrast-background-color);
+                color: var(--contrast-text-color);
+            }
+
+            &__name {
+                color: var(--contrast-text-color);
+            }
+        }
+    }
+
+    @media (max-width: 1440px) {
+        &__icon {
+            height: 150px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        &__icon {
+            height: 100px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        &__icon {
+            height: 100px;
+
+            img,
+            svg  {
+                min-height: auto;
+                min-width: auto;
+            }
         }
     }
 }

@@ -1,6 +1,22 @@
 @import "../_var";
 
 .projects-list {
+    --columns-count: 4;
+
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--columns-count), 1fr);
+    grid-gap: var(--grid-gap);
+    padding: var(--grid-gap) 0;
+
+    @media (max-width: 1440px) {
+        --columns-count: 3;
+    }
+
+    @media (max-width: 768px) {
+        --columns-count: 2;
+    }
+
+    @media (max-width: 480px) {
+        --columns-count: 1;
+    }
 }

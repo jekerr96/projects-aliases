@@ -62,11 +62,11 @@ class ProjectsListService
                     return $data;
                 }
 
-                return '<img src="data:image/"' . $type . ';base64,' . base64_encode($data) . '" alt="">';
+                return '<img src="data:image/' . $type . ';base64,' . base64_encode($data) . '" alt="">';
             }
         }
 
-        return '<img src="/slon-256.png" alt="">';
+        return '<img src="/storage/slon-256.png" alt="">';
     }
 
     /**

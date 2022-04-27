@@ -16,7 +16,7 @@ class JwtService
         }
     }
 
-    protected function parse(string $token): ?\stdClass {
+    protected function parse(string $token): void {
         $this->tokenData = (new Jwt())->setToken($token)->getTokenData();
     }
 

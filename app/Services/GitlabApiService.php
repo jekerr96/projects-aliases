@@ -19,8 +19,6 @@ class GitlabApiService
     {
         if (!isset($this->cacheProjects)) {
             $this->cacheProjects = collect($this->projects)->keyBy('path');
-
-            Log::info($this->cacheProjects->keys());
         }
 
         return $this->cacheProjects;

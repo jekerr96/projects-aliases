@@ -74,14 +74,19 @@ class ProjectsListService
      */
     public function getProjects(): Collection
     {
+        /** @var CoreDetector $detector */
+        $detector = app(CoreDetector::class);
+
         return collect(
-            array_map(function (string $directory) {
+            array_map(function (string $directory) use ($detector) {
                 $icon = $this->getIconByDir($directory);
                 $project = new Project($directory);
 
                 if ($icon) {
                     $project->setIcon($icon);
                 }
+
+                $project->setBackendCore($detector->detectBackendCore($project));
 
                 return $project;
             }, $this->getDirectories())

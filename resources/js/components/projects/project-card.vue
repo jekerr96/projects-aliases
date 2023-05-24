@@ -5,7 +5,8 @@
         <span class="project-card__bottom">
             <span class="project-card__name">{{ project.name }}</span>
             <span class="project-card__info project-card__link">{{ project.url }}</span>
-            <span class="project-card__info project-card__commits">Количество коммитов: {{ commitsCount }}</span>
+            <span class="project-card__info project-card__commits">Количество переходов: {{ project.openCount }}</span>
+            <span class="project-card__info project-card__commits">Ядро: {{ project.core }}</span>
         </span>
     </a>
 </template>

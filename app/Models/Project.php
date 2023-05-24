@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\BackendCore\Dto\BackendCore;
 use Illuminate\Support\Str;
 
 class Project
 {
     protected string $icon = '/slon-256.png';
+    protected BackendCore $backendCore;
 
     public function __construct(protected string $directory)
     {
@@ -42,5 +44,22 @@ class Project
     protected function getLinkTemplate(): string
     {
         return env('PROJECTS_LINK_TEMPLATE');
+    }
+
+    public function getDirectory(): string
+    {
+        return $this->directory;
+    }
+
+    public function getBackendCore(): BackendCore
+    {
+        return $this->backendCore;
+    }
+
+    public function setBackendCore(BackendCore $backendCore): static
+    {
+        $this->backendCore = $backendCore;
+
+        return $this;
     }
 }

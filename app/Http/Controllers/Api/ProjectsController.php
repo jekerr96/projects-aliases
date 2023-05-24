@@ -8,6 +8,7 @@ use App\Models\Bots\TelegramBot;
 use App\Services\JwtService;
 use App\Services\ProjectsListService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ProjectsController extends Controller
 {
@@ -28,6 +29,8 @@ class ProjectsController extends Controller
         $login = 'Кто-то';
         $jwtLogin = $jwtService->getLogin();
         $login = $jwtLogin ?: $login;
+
+        Cache::increment('project' . $project);
 
         $bot->sendMessage($login . ' перешел в ' . $project);
 

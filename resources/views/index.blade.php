@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="/css/style.css?{{ filemtime(public_path('css/style.css')) }}">
 </head>
 <body>
+    @if ($login)
+        <div class="content-container" style="margin-top: 32px; margin-bottom: 32px;">
+            Привет, <strong>{{ $login }}</strong>!
+        </div>
+    @endif
     <div id="app"></div>
     <script src="/js/app.js"></script>
 </body>

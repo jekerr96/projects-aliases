@@ -2,13 +2,13 @@
 
 namespace App\Models\Bots;
 
+use Illuminate\Support\Facades\Http;
+
 class TelegramBot implements BotInterface
 {
     public function sendMessage(string $message): void
     {
-        $curl = curl_init('https://api.telegram.org/bot' . $this->getToken() . '/sendMessage?chat_id=' . $this->getChatId() .'&text=' . $message);
-        curl_exec($curl);
-        curl_close($curl);
+        Http::get('https://api.telegram.org/bot' . $this->getToken() . '/sendMessage?chat_id=' . $this->getChatId() .'&text=' . $message);
     }
 
     protected function getToken(): string {

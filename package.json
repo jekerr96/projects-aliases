@@ -1,4 +1,11 @@
 {
+     "scripts": {
+        "start": "gulp default",
+        "build": "gulp buildAll",
+        "build-js": "gulp webpack-prod",
+        "analyze-js": "gulp webpack-analyze-prod",
+        "serve": "gulp serve"
+    },
     "dependencies": {
         "vue": "^2.6.14"
     },

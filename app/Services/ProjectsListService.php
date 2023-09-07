@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Project;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class ProjectsListService
 {
@@ -45,13 +46,14 @@ class ProjectsListService
         $directories = scandir($this->getRootDirectory());
 
         return array_filter($directories, function ($item) {
-            return in_array($item, $this->ignores) ? false : $item;
+            return in_array($item, $this->ignores) || !is_dir($this->getRootDirectory() . DIRECTORY_SEPARATOR . $item) ? false : $item;
         });
     }
 
     protected function getIconByDir(string $directory): ?string
     {
         foreach ($this->icons as $icon) {
+            $icon = Str::replace('\\', DIRECTORY_SEPARATOR, $icon);
             $path = $this->getRootDirectory() . DIRECTORY_SEPARATOR . $directory . DIRECTORY_SEPARATOR . $icon;
 
             if (file_exists($path)) {

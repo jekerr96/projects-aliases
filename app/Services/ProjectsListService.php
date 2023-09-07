@@ -17,7 +17,8 @@ class ProjectsListService
         'budget',
         'test-vue',
         'sibirix-instagram',
-        'tools'
+        'tools',
+        'projects-aliases',
     ];
     protected array $icons = [
         "www\\local\\images\\logo.svg",
